@@ -45,10 +45,14 @@ public class Userappdao {
 		return application;
 	}
 
-	public List<Application> getApplicationlist() {
+	public List<Application> getApplist(User user) {
 
 		Query query = entityManager.createQuery("select a from Application a", Application.class);
 		return query.getResultList();
 
+	}
+	public List<User> getUserList(User user) {
+		Query query = entityManager.createQuery("select u from User u",User.class );
+		return query.getResultList();
 	}
 }
