@@ -23,6 +23,8 @@
 		<form:input path="password" />
 		<br></br>
 		
+		<form:label path="Role">Role :</form:label>
+		<form:input path="Role" />
 		<br></br>
 
 		<input type="submit">
