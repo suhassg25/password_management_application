@@ -55,4 +55,9 @@ public class Userappdao {
 		Query query = entityManager.createQuery("select u from User u",User.class );
 		return query.getResultList();
 	}
+	
+	public List<Application> getById(User user)
+	{
+		return entityManager.createQuery("Select a from Application a where a.user=?1", Application.class).setParameter(1, user).getResultList();
+	}
 }

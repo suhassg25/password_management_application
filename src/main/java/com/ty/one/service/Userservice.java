@@ -43,4 +43,9 @@ public class Userservice {
 
 	}
 	
+	public List<Application> getbyId(User user)
+	{
+		return userappdao.getById(user);
+	}
+	
 }
