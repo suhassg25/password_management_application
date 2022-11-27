@@ -49,8 +49,12 @@ public class UserController {
 		}
 
 		else if (u.getPassword().equalsIgnoreCase(user.getPassword()) && u.getRole().equalsIgnoreCase("Admin")) {
-
-			modelAndView.addObject("appList", userservice.getAppList());
+			List<User> list = userservice.getUserList(user);
+			modelAndView.addObject("user", new User());
+			List<Application> user2 = userservice.getAppList(user);
+			modelAndView.addObject("application", new Application());
+			modelAndView.addObject("appList", userservice.getAppList(user));
+			modelAndView.addObject("userList", userservice.getUserList(user));
 			modelAndView.setViewName("adminView.jsp");
 		} else {
 			modelAndView.setViewName("login.jsp");

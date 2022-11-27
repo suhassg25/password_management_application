@@ -34,8 +34,13 @@ public class Userservice {
 
 	}
 
-	public List<Application> getAppList() {
-		return userappdao.getApplicationlist();
+	public List<Application> getAppList(User user) {
+		return userappdao.getApplist(user);
 
 	}
+	public List<User> getUserList(User user) {
+		return userappdao.getUserList(user);
+
+	}
+	
 }
