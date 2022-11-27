@@ -19,6 +19,7 @@ import com.ty.one.dto.User;
 import com.ty.one.service.Userservice;
 
 
+
 @Controller
 public class UserController {
 
@@ -45,7 +46,7 @@ public class UserController {
 
 		if (u.getPassword().equalsIgnoreCase(user.getPassword()) && u.getRole().equalsIgnoreCase("User")) {
 			modelAndView.addObject("application", new Application());
-			modelAndView.setViewName("app.jsp");
+			modelAndView.setViewName("addorview.jsp");
 		}
 
 		else if (u.getPassword().equalsIgnoreCase(user.getPassword()) && u.getRole().equalsIgnoreCase("Admin")) {
@@ -104,5 +105,27 @@ public class UserController {
 	
 		return modelAndView;
 	
+	}
+	@RequestMapping("appadd")
+	public ModelAndView addapp(@ModelAttribute Application application)
+	{
+		ModelAndView modelAndView=new ModelAndView();
+		modelAndView.addObject("application", new Application());
+		modelAndView.setViewName("app.jsp");
+		return modelAndView;
+	}
+	
+	
+	@RequestMapping("viewuserapps")
+	public ModelAndView viewuser(Application application)
+	{
+
+		ModelAndView modelAndView=new ModelAndView();
+		modelAndView.addObject("application", new Application());
+		
+				modelAndView.addObject("slist", userservice.getbyId(u));
+			modelAndView.setViewName("viewer.jsp");
+			return modelAndView;
+		
 	}
 }
