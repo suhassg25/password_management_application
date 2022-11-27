@@ -15,26 +15,27 @@ public class Userservice {
 
 	@Autowired
 	Userappdao userappdao;
-	
-	
-	public User saveUser(User user)//, Application application
+
+	public User saveUser(User user)// , Application application
 	{
-		return userappdao.saveUser(user); //, application
+		return userappdao.saveUser(user); // , application
 	}
-	
-	public Application saveApp(Application appli)
-	{
+
+	public Application saveApp(Application appli) {
 		return userappdao.saveApp(appli);
 	}
-	
-	public User findEmail(String email)
-	{
+
+	public User findEmail(String email) {
 		return userappdao.findbyEmail(email);
 	}
-	
-	public Application saveapp(Application application)
-	{
-		return  userappdao.saveApp(application);
-		
+
+	public Application saveapp(Application application) {
+		return userappdao.saveApp(application);
+
+	}
+
+	public List<Application> getAppList() {
+		return userappdao.getApplicationlist();
+
 	}
 }

@@ -19,7 +19,15 @@ public class User {
 	private String name;
 	private String email;
 	private String password;
+	private String Role;
+	
 
+	public String getRole() {
+		return Role;
+	}
+	public void setRole(String role) {
+		Role = role;
+	}
 	public int getId() {
 		return id;
 	}

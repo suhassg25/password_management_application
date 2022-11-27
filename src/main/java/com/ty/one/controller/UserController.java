@@ -18,6 +18,7 @@ import com.ty.one.dto.Application;
 import com.ty.one.dto.User;
 import com.ty.one.service.Userservice;
 
+
 @Controller
 public class UserController {
 
@@ -37,20 +38,24 @@ public class UserController {
 	}
 	User u;
 	@RequestMapping("saveapp")
-	public ModelAndView saveap(@ModelAttribute User user, Application application, HttpServletRequest req, HttpServletResponse res)
-	{
-		u=userservice.findEmail(user.getEmail());
-		ModelAndView modelAndView=new ModelAndView();
-		
-		if(u.getPassword().equals(user.getPassword()))
-		{
-			modelAndView.addObject("application",new Application());
+	public ModelAndView saveap(@ModelAttribute User user,  Application application, HttpServletRequest req,
+			HttpServletResponse res) {
+		u = userservice.findEmail(user.getEmail());
+		ModelAndView modelAndView = new ModelAndView();
+
+		if (u.getPassword().equalsIgnoreCase(user.getPassword()) && u.getRole().equalsIgnoreCase("User")) {
+			modelAndView.addObject("application", new Application());
 			modelAndView.setViewName("app.jsp");
 		}
-		else
-		{
+
+		else if (u.getPassword().equalsIgnoreCase(user.getPassword()) && u.getRole().equalsIgnoreCase("Admin")) {
+
+			modelAndView.addObject("appList", userservice.getAppList());
+			modelAndView.setViewName("adminView.jsp");
+		} else {
 			modelAndView.setViewName("login.jsp");
-		}	return modelAndView;
+		}
+		return modelAndView;
 	}
 	
 	@RequestMapping("signup")
