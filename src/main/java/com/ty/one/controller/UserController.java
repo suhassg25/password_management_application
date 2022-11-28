@@ -1,8 +1,10 @@
 package com.ty.one.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ty.one.dto.Application;
 import com.ty.one.dto.User;
 import com.ty.one.service.Userservice;
+
 
 @Controller
 public class UserController {
@@ -130,4 +133,30 @@ public class UserController {
 		return modelAndView;
 
 	}
+	
+	//latest code
+	@RequestMapping("delete")
+	public void delete(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
+	{
+		userservice.DeletebyId(Integer.parseInt(req.getParameter("id")));
+		req.getRequestDispatcher("viewuserapps").forward(req, res);
+	}
+
+	@RequestMapping("edit")
+	public ModelAndView edit(@RequestParam int id)
+	{
+		ModelAndView modelAndView= new ModelAndView();
+		modelAndView.addObject("application",userservice.findByid(id));
+		modelAndView.setViewName("edit.jsp");
+		return modelAndView;
+	}
+
+	@RequestMapping("update")
+	public void edit(@ModelAttribute Application application, HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
+	{	
+		application.setUser(u);
+		userservice.update(application);
+		req.getRequestDispatcher("viewuserapps").forward(req, res);	
+	}
+
 }

@@ -60,4 +60,29 @@ public class Userappdao {
 	{
 		return entityManager.createQuery("Select a from Application a where a.user=?1", Application.class).setParameter(1, user).getResultList();
 	}
+	
+	public Application deleteById(int id)
+	{
+		Application a1=entityManager.find(Application.class, id);
+		EntityTransaction entityTransaction=entityManager.getTransaction();
+		entityTransaction.begin();
+		entityManager.remove(a1);
+		entityTransaction.commit();
+		return a1;
+		
+	}
+	
+	public Application findappid(int id)
+	{
+		return entityManager.find(Application.class, id);
+	}
+	public Application update(Application application)
+	{
+		EntityTransaction entityTransaction= entityManager.getTransaction();
+		entityTransaction.begin();
+		entityManager.merge(application);
+		entityTransaction.commit();
+		return application;
+		
+	}
 }

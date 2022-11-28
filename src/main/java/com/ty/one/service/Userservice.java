@@ -48,4 +48,16 @@ public class Userservice {
 		return userappdao.getById(user);
 	}
 	
+	public Application DeletebyId(int id)
+	{
+		return userappdao.deleteById(id);
+	}
+	public Application findByid(int id)
+	{
+		return userappdao.findappid(id);
+	}
+	public Application update(Application application)
+	{
+		return userappdao.update(application);
+	}
 }
